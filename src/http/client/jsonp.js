@@ -8,7 +8,9 @@ export default function (request) {
     return new Promise((resolve) => {
 
         var name = request.jsonp || 'callback', callback = '_jsonp' + Math.random().toString(36).substr(2), body = null, handler, script;
-
+        if (request.callback) {
+            callback = request.callback;
+        }
         handler = (event) => {
 
             var status = 0;
